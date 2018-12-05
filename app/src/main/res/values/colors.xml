@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- n° 500n color -->
+    <color name="colorPrimary">#212121</color>
+    <!-- n° 700n color -->
+    <color name="colorPrimaryDark">#000000</color>
+    <!-- n° 200A color -->
+    <color name="colorAccent">#FFAB40</color>
+
+    <color name="subfondo">#424242</color>
+
+    <color name="botonPrimary">#FF9800</color>
+
+    <color name="botonPrimaryDark">#F57C00</color>
+
+    <color name="backgroundtext_card">#53292929</color>
+
+    <color name="background_cardview">#EEEEEE</color>
+
+</resources>

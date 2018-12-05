@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".usuario_general.fragments.PerfilFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layoutWidth_cardView"
+                android:background="@color/subfondo"
+                />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="@dimen/width_cardviewfront"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/background_cardview"
+                    android:layout_marginTop="@dimen/textSize_titulo"
+                    android:layout_marginBottom="@dimen/textSize_titulo"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        >
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/id_foto"
+                            android:layout_width="@dimen/margin_circleImage"
+                            android:layout_height="@dimen/margin_circleImage"
+                            android:src="@drawable/foto"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/marginTopButton"
+                            />
+
+                        <TextView
+                            android:id="@+id/perf_nombre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nombre"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/textSize_subtitulo"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/editText_margin_createaccount"
+                            />
+
+                        <TextView
+                            android:id="@+id/perf_usuario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nombre_usuario"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/textSize_normal"
+                            android:layout_gravity="center"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginTop="@dimen/marginTopButton"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nombres"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/dato_nombre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sindato"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginTop="@dimen/editText_margin_createaccount"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/apellidos"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/dato_apellido"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sindato"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginTop="@dimen/editText_margin_createaccount"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/fechana"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/dato_fecha"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sindato"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginTop="@dimen/editText_margin_createaccount"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/telefono"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/dato_telefono"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sindato"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginTop="@dimen/editText_margin_createaccount"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ordenes"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                            <TextView
+                                android:id="@+id/dato_ordenes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sindato"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_weight="1"
+                                />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/butt_editar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/editar"
+                            android:theme="@style/RaisedButtonDark"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/marginTopButton"
+                            android:textAllCaps="false"
+                            />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</FrameLayout>

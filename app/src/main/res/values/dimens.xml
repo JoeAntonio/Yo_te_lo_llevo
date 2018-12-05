@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize_lite">16sp</dimen>
+    <dimen name="textSize_normal">18sp</dimen>
+    <dimen name="textSize_subtitulo">22sp</dimen>
+    <dimen name="textSize_titulo">35sp</dimen>
+    <dimen name="padding_horizontal_login">32dp</dimen>
+    <dimen name="editText_margin_createaccount">10dp</dimen>
+    <dimen name="marginTopButton">20dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="marginView">350dp</dimen>
+    <dimen name="layoutWidth_grid">130dp</dimen>
+    <dimen name="layoutHeight_grid">180dp</dimen>
+    <dimen name="layout_imageGrid">64dp</dimen>
+    <dimen name="marginCard">5dp</dimen>
+    <dimen name="margin_circleImage">150dp</dimen>
+    <dimen name="cardElevation">8dp</dimen>
+    <dimen name="cornerRadius_cardView">4dp</dimen>
+    <dimen name="layoutWidth_cardView">250dp</dimen>
+    <dimen name="layoutHeight_cardView">130dp</dimen>
+    <dimen name="appBarLayout_height">200dp</dimen>
+    <dimen name="width_cardviewfront">335dp</dimen>
+    <dimen name="height_cardviewfront">450dp</dimen>
+    <dimen name="marginTop_cardviewfront">50dp</dimen>
+    <dimen name="marginText">30dp</dimen>
+    <dimen name="logo">45dp</dimen>
+</resources>

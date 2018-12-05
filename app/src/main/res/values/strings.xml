@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">YO TE LO LLEVO</string>
+    <string name="restrinccion">TODO</string>
+    <string name="username">Usuario o Número de teléfono:</string>
+    <string name="password">Contraseña:</string>
+    <string name="login">Login</string>
+    <string name="cuenta">¿No tienes cuenta?,</string>
+    <string name="crear">crea una aquí</string>
+    <string name="registrate">Registrate</string>
+    <string name="nombres">Nombre(s):</string>
+    <string name="apellidos">Apellidos:</string>
+    <string name="fechana">Fecha de nacimiento:</string>
+    <string name="telefono">Número de teléfono:</string>
+    <string name="usuario">Usuario:</string>
+    <string name="confirmapa">Confirmar contraseña:</string>
+    <string name="toolbat_createaccount">Crear cuenta</string>
+    <string name="crear_cuenta">Guardar</string>
+    <string name="toolbar_inicio">Yo te lo Llevo</string>
+    <string name="toolbar_editar">Editar cuenta</string>
+    <string name="historial">Historial</string>
+    <string name="cerrarsesion">Cerrar sesión</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="servicios">Servicios</string>
+    <string name="nombre">Nombre</string>
+    <string name="nombre_usuario">Usuario</string>
+    <string name="ordenes">Ordenes realizadas:</string>
+    <string name="sindato">-</string>
+    <string name="editar">Editar</string>
+    <string name="contactanos">Contáctanos</string>
+    <string name="asunto">Asunto:</string>
+    <string name="mensaje">Mensaje:</string>
+    <string name="enviar">Enviar</string>
+    <string name="datosperfil">Datos usuario</string>
+    <string name="completo">Nombre completo:</string>
+    <string name="todo">TODO</string>
+    <string name="datos_cuenta">Datos cuenta</string>
+    <string name="eliminar_cuenta">Eliminar cuenta</string>
+    <string name="info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make.</string>
+    <string name="pedir">Siguiente</string>
+    <string name="wifi">No hay internet</string>
+</resources>
