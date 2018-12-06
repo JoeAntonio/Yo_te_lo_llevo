@@ -25,8 +25,10 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
 
-        //texto = (me.biubiubiu.justifytext.library.JustifyTextView) findViewById(R.id.infoText);
-        //imagen = (ImageView) findViewById(R.id.vectorImage);
+        texto = (me.biubiubiu.justifytext.library.JustifyTextView) findViewById(R.id.infoText);
+        imagen = (ImageView) findViewById(R.id.vectorImage);
+
+        /*
 
         progressBar = (ProgressBar) findViewById(R.id.loading);
         progressBar.setVisibility(View.VISIBLE);
@@ -48,5 +50,7 @@ public class InfoActivity extends AppCompatActivity {
                 handler.post(runnable);
             }
         }, 10000, 1000);
+
+        */
     }
 }
