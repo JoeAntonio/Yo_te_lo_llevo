@@ -76,7 +76,7 @@
                 android:layout_width="@dimen/width_cardviewfront"
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/background_cardview"
-                android:layout_marginTop="@dimen/textSize_titulo"
+                android:layout_marginTop="@dimen/marginTopButton"
                 >
 
                 <LinearLayout

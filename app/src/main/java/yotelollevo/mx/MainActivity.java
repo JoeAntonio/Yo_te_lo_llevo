@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import yotelollevo.mx.usuario_general.InfoActivity;
 import yotelollevo.mx.usuario_general.LoginActivity;
+import yotelollevo.mx.usuario_general.OrdenActivity;
 import yotelollevo.mx.usuario_general.adapter.ViewPagerAdapter;
 import yotelollevo.mx.usuario_general.fragments.ContactoFragment;
 import yotelollevo.mx.usuario_general.fragments.InicioFragment;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings_historial:
-                Intent i = new Intent(this, InfoActivity.class);
+                Intent i = new Intent(this, OrdenActivity.class);
                 startActivity(i);
                 return true;
 

@@ -201,6 +201,10 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
                     conexionServidor.add(update);
                 }
                 break;
+
+            case R.id.editar_fecha:
+                Calendario(fecha, EditarPerfilActivity.this, "EditarPerfilActivity");
+                break;
         }
     }
 
@@ -236,33 +240,30 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void Calendario(final EditText txt, final Context activity, final String nombreActividad) {
-        txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int anio = cal.get(Calendar.YEAR);
-                int mes = cal.get(Calendar.MONTH);
-                int dia = cal.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(
-                        activity,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        (new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                month += 1;
-                                Log.d(nombreActividad, "onDateSet: AAAA-MM-DD: "+year+"/"+month+"/"+dayOfMonth);
-                                String fecha = year+"-"+month+"-"+dayOfMonth;
-                                txt.setText(fecha);
-                            }
-                        }),
-                        anio,
-                        mes,
-                        dia
-                );
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
+
+        Calendar cal = Calendar.getInstance();
+        int anio = cal.get(Calendar.YEAR);
+        int mes = cal.get(Calendar.MONTH);
+        int dia = cal.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dialog = new DatePickerDialog(
+                activity,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                (new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month += 1;
+                        Log.d(nombreActividad, "onDateSet: AAAA-MM-DD: "+year+"/"+month+"/"+dayOfMonth);
+                        String fecha = year+"-"+month+"-"+dayOfMonth;
+                        txt.setText(fecha);
+                    }
+                }),
+                anio,
+                mes,
+                dia
+        );
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
     }
 
     public void showToolbar(String tittle, boolean upButton) {

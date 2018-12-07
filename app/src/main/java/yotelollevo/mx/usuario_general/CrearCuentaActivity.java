@@ -207,9 +207,7 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void Calendario(final EditText txt, final Context activity, final String nombreActividad) {
-        txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 Calendar cal = Calendar.getInstance();
                 int anio = cal.get(Calendar.YEAR);
                 int mes = cal.get(Calendar.MONTH);
@@ -232,8 +230,7 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
                 );
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-            }
-        });
+
     }
 
     public void showToolbar(String tittle, boolean upButton) {

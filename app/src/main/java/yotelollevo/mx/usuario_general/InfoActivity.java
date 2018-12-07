@@ -28,29 +28,5 @@ public class InfoActivity extends AppCompatActivity {
         texto = (me.biubiubiu.justifytext.library.JustifyTextView) findViewById(R.id.infoText);
         imagen = (ImageView) findViewById(R.id.vectorImage);
 
-        /*
-
-        progressBar = (ProgressBar) findViewById(R.id.loading);
-        progressBar.setVisibility(View.VISIBLE);
-
-        handler = new Handler();
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-
-                progressBar.setVisibility(View.GONE);
-                timer.cancel();
-            }
-        };
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(runnable);
-            }
-        }, 10000, 1000);
-
-        */
     }
 }

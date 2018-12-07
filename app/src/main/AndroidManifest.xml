@@ -39,12 +39,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".usuario_general.InfoActivity"
+        <activity
+            android:name=".usuario_general.InfoActivity"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean">
+            tools:targetApi="jelly_bean"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainActivity"
+                />
+        </activity>
+        <activity android:name=".usuario_general.OrdenActivity"
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"
+                />
         </activity>
     </application>
 
