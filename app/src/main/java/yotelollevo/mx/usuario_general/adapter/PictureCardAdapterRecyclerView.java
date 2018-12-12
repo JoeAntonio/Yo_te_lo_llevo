@@ -1,6 +1,6 @@
 package yotelollevo.mx.usuario_general.adapter;
 
-import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,52 +8,52 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-
 import yotelollevo.mx.R;
 import yotelollevo.mx.usuario_general.model.Picture;
 
 public class PictureCardAdapterRecyclerView extends RecyclerView.Adapter<PictureCardAdapterRecyclerView.PictureCardViewHolder> {
 
-    private ArrayList<Picture> pictureArrayList;
-    private int resource;
-    private Activity activity;
+    private ArrayList<Picture> aPicture;
+    private Context aContext;
 
-    public PictureCardAdapterRecyclerView(ArrayList<Picture> pictureArrayList, int resource, Activity activity) {
-        this.pictureArrayList = pictureArrayList;
-        this.resource = resource;
-        this.activity = activity;
+    public PictureCardAdapterRecyclerView(Context context, ArrayList<Picture> pictureArrayList) {
+        aPicture = pictureArrayList;
+        aContext = context;
     }
 
     @NonNull
     @Override
-    public PictureCardAdapterRecyclerView.PictureCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(resource, viewGroup, false);
-        return new PictureCardViewHolder(view);
+    public PictureCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(aContext).inflate(R.layout.picture_cardview, parent, false);
+        return new PictureCardViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PictureCardAdapterRecyclerView.PictureCardViewHolder pictureCardViewHolder, int i) {
-        final Picture picture = pictureArrayList.get(i);
-        pictureCardViewHolder.titulo.setText(picture.getTitulo());
-        pictureCardViewHolder.subtitulo.setText(picture.getSubtitulo());
-        pictureCardViewHolder.imagenCard.setImageResource(picture.getImagen());
+    public void onBindViewHolder(@NonNull PictureCardViewHolder holder, int position) {
+        Picture picture = aPicture.get(position);
 
-        //Se ejecuta la imagen para ingresar a un nuevo Activity.
+        String stringIma = picture.getImagen();
+        String stringTit = picture.getTitulo();
+        String stringSub = picture.getSubtitulo();
+
+        holder.titulo.setText(stringTit);
+        holder.subtitulo.setText(stringSub);
+        Picasso.get().load(stringIma).fit().centerInside().into(holder.imagenCard);
+
     }
 
     @Override
     public int getItemCount() {
-        return pictureArrayList.size();
+        return aPicture.size();
     }
 
-    public class PictureCardViewHolder extends RecyclerView.ViewHolder {
+    class PictureCardViewHolder extends RecyclerView.ViewHolder {
+        ImageView imagenCard;
+        TextView titulo, subtitulo;
 
-        private ImageView imagenCard;
-        private TextView titulo, subtitulo;
-
-        public PictureCardViewHolder(@NonNull View itemView) {
+        PictureCardViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imagenCard = (ImageView) itemView.findViewById(R.id.idCarrusel);

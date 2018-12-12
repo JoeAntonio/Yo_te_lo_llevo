@@ -1,23 +1,17 @@
 package yotelollevo.mx.usuario_general.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,14 +19,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import yotelollevo.mx.MainActivity;
 import yotelollevo.mx.R;
 import yotelollevo.mx.usuario_general.EditarPerfilActivity;
 
@@ -56,20 +46,21 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-            View view = inflater.inflate(R.layout.perfil_fragment, container, false);
-            editar = (Button) view.findViewById(R.id.butt_editar);
-            nom = (TextView) view.findViewById(R.id.perf_nombre);
-            usuario = (TextView) view.findViewById(R.id.perf_usuario);
-            nombres = (TextView) view.findViewById(R.id.dato_nombre);
-            apellidos = (TextView) view.findViewById(R.id.dato_apellido);
-            fecha = (TextView) view.findViewById(R.id.dato_fecha);
-            telefono = (TextView) view.findViewById(R.id.dato_telefono);
+        View view = inflater.inflate(R.layout.perfil_fragment, container, false);
 
-            editar.setOnClickListener(this);
+        editar = (Button) view.findViewById(R.id.butt_editar);
+        nom = (TextView) view.findViewById(R.id.perf_nombre);
+        usuario = (TextView) view.findViewById(R.id.perf_usuario);
+        nombres = (TextView) view.findViewById(R.id.dato_nombre);
+        apellidos = (TextView) view.findViewById(R.id.dato_apellido);
+        fecha = (TextView) view.findViewById(R.id.dato_fecha);
+        telefono = (TextView) view.findViewById(R.id.dato_telefono);
 
-            conexionServidor = Volley.newRequestQueue(getActivity());
+        editar.setOnClickListener(this);
 
-            ObtenerDatos();
+        conexionServidor = Volley.newRequestQueue(getActivity());
+
+        ObtenerDatos();
 
         return view;
     }
@@ -146,7 +137,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         String stringA = preferences.getString("apellidos", null);
         String stringF = preferences.getString("fecha", null);
         String stringT = preferences.getString("telefono", null);
-        String stringU = preferences.getString("usuario", null);
+        String stringU = preferences.getString("email", null);
 
         nombres.setText(stringN);
         apellidos.setText(stringA);

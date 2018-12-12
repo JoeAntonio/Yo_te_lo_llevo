@@ -2,20 +2,19 @@ package yotelollevo.mx.usuario_general.model;
 
 public class Picture {
 
-    private int imagen;
-    private String titulo, subtitulo;
+    String imagen, titulo, subtitulo;
 
-    public Picture(int imagen, String titulo, String subtitulo) {
+    public Picture(String imagen, String titulo, String subtitulo) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

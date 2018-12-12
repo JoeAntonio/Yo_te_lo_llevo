@@ -15,6 +15,6 @@
 
     <color name="backgroundtext_card">#53292929</color>
 
-    <color name="background_cardview">#EEEEEE</color>
+    <color name="background_cardview"> #ecf0f1</color>
 
 </resources>

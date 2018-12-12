@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                iconColor(tab, "#E0E0E0");
+                iconColor(tab, "#000000");
             }
 
             @Override
@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings_historial:
-                Intent i = new Intent(this, OrdenActivity.class);
-                startActivity(i);
+
                 return true;
 
             case R.id.action_settings_cerrarsesion:

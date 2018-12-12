@@ -1,5 +1,6 @@
 package yotelollevo.mx.usuario_general;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,11 +8,13 @@ import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +38,7 @@ import yotelollevo.mx.R;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText usuario, clave;
+    private TextView subrayado;
     private Button acceder;
 
     private RequestQueue conexionServidor;
@@ -42,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     final String TAG = this.getClass().getName();
 
     boolean twice;
+
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         usuario = (EditText) findViewById(R.id.login_usuario);
         clave = (EditText) findViewById(R.id.login_pass);
         acceder = findViewById(R.id.butt_sesion);
+        subrayado = (TextView) findViewById(R.id.textView_crear);
+
+        //Manda a llamar al texto subrayado.
+        subrayado.setText(Html.fromHtml(getResources().getString(R.string.crear)));
+
+        dialog = new ProgressDialog(this);
 
         acceder.setOnClickListener(this);
 
@@ -70,6 +83,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch(v.getId()){
             case R.id.butt_sesion:
                 if (validacion()) {
+                    dialog.setTitle("Cargando");
+                    dialog.setMessage("Por favor espere");
+                    dialog.setCancelable(false);
+                    dialog.show();
                     //Acciones del click del botón de iniciar sesión.
                     String url = "http://yotelollevo.mx/webservices/Controller/user.php?f=login";
                     //Tipo de envío (POST, GET), URL, En caso de respuesta, En caso de error.
@@ -82,6 +99,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 if(objetoRespuesta.getInt("code") == 404){
                                     //Error en el login.
                                     Toast.makeText(LoginActivity.this, "usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+
                                 }else if(objetoRespuesta.getInt("code") == 200){
                                     //Si es correcta.
                                     JSONObject datosUsuario = objetoRespuesta.getJSONObject("dataUser");
@@ -91,11 +110,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     editor.putString("email", usuario.getText().toString());
                                     editor.commit();
                                     //Intent.
+                                    dialog.dismiss();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     LoginActivity.this.finish();
                                 }
                             } catch (JSONException e) {
+                                dialog.dismiss();
                                 e.printStackTrace();
                             }
                         }
@@ -103,7 +124,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             //En caso de error de conexión.
+                            dialog.dismiss();
                             Toast.makeText(LoginActivity.this, "no hay conexión a internet", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     }){
                         //Variables a mandar.

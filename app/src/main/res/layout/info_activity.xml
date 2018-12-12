@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
-    tools:context=".usuario_general.InfoActivity"
-    >
+    android:background="@color/subfondo"
+    tools:context=".usuario_general.InfoActivity">
+
+    <include layout="@layout/actionbar_toolbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             >
 
             <ImageView
                 android:id="@+id/vectorImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/restrinccion"
                 />
@@ -36,7 +37,7 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:fillViewport="true"
             >
 
@@ -48,21 +49,32 @@
                 >
 
                 <me.biubiubiu.justifytext.library.JustifyTextView
-                    android:id="@+id/infoText"
+                    android:id="@+id/info_resumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize_normal"
                     android:textColor="@android:color/white"
+                    android:text="@string/resumen"
+                    />
+
+                <me.biubiubiu.justifytext.library.JustifyTextView
+                    android:id="@+id/info_detalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_normal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/detalles"
+                    android:layout_marginTop="@dimen/marginText"
                     />
 
                 <Button
-                    android:id="@+id/butt_sesion"
+                    android:id="@+id/butt_siguiente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pedir"
                     android:theme="@style/RaisedButtonDark"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:layout_marginTop="@dimen/marginText"
                     android:textAllCaps="false"
                     />
 

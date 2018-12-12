@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import yotelollevo.mx.R;
 import yotelollevo.mx.usuario_general.model.Top;
@@ -16,6 +19,15 @@ public class TopCardAdapterRecyclerView extends RecyclerView.Adapter<TopCardAdap
 
     private ArrayList<Top> aTop;
     private Context aContext;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener clickListener) {
+        listener = clickListener;
+    }
 
     public TopCardAdapterRecyclerView( Context context, ArrayList<Top> topArrayList) {
         aTop = topArrayList;
@@ -43,14 +55,26 @@ public class TopCardAdapterRecyclerView extends RecyclerView.Adapter<TopCardAdap
         return aTop.size();
     }
 
-    public class TopCardViewHolder extends RecyclerView.ViewHolder {
+    class TopCardViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imagenCard;
+        ImageView imagenCard;
 
-        public TopCardViewHolder(@NonNull View itemView) {
+        TopCardViewHolder(View itemView) {
             super(itemView);
 
             imagenCard = (ImageView) itemView.findViewById(R.id.id_top);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

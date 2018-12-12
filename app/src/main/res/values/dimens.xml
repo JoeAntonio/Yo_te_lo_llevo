@@ -16,13 +16,14 @@
     <dimen name="marginCard">5dp</dimen>
     <dimen name="margin_circleImage">150dp</dimen>
     <dimen name="cardElevation">8dp</dimen>
-    <dimen name="cornerRadius_cardView">4dp</dimen>
+    <dimen name="cornerRadius_cardView">8dp</dimen>
     <dimen name="layoutWidth_cardView">250dp</dimen>
     <dimen name="layoutHeight_cardView">130dp</dimen>
     <dimen name="appBarLayout_height">200dp</dimen>
     <dimen name="width_cardviewfront">335dp</dimen>
     <dimen name="height_cardviewfront">450dp</dimen>
     <dimen name="marginTop_cardviewfront">50dp</dimen>
+    <dimen name="margintop_height">70dp</dimen>
     <dimen name="marginText">30dp</dimen>
     <dimen name="logo">45dp</dimen>
 </resources>

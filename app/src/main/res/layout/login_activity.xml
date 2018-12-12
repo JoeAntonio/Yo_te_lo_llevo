@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/logo_negro"
-                android:contentDescription="@string/restrinccion" />
+                android:contentDescription="@string/restrinccion"
+                />
 
         </RelativeLayout>
 

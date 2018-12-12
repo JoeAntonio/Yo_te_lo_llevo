@@ -1,7 +1,9 @@
 package yotelollevo.mx.usuario_general;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,11 +11,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,9 +42,11 @@ import yotelollevo.mx.usuario_general.fragments.PerfilFragment;
 public class EditarPerfilActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText nombres, apellidos, fecha, telefono;
+    private TextView eliminar;
     private EditText pass, confpass;
     private Button guardar;
     private Button guardarCuenta;
+    private AlertDialog.Builder alerta;
 
     private RequestQueue conexionServidor;
     private StringRequest update;
@@ -59,12 +65,18 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
         pass = (EditText) findViewById(R.id.editar_pass);
         confpass = (EditText) findViewById(R.id.editar_confpass);
         guardarCuenta = (Button) findViewById(R.id.butt_guardarcuenta);
+        eliminar = (TextView) findViewById(R.id.eliminar);
 
+        //Manda a llamar al texto subrayado.
+        eliminar.setText(Html.fromHtml(getResources().getString(R.string.eliminar_cuenta)));
+
+        alerta = new AlertDialog.Builder(this);
 
         CargarDatos();
 
         guardar.setOnClickListener(this);
         guardarCuenta.setOnClickListener(this);
+        eliminar.setOnClickListener(this);
 
         fecha.setKeyListener(null);
         fecha.setOnClickListener(this);
@@ -86,10 +98,10 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
         switch(v.getId()) {
             case R.id.butt_guardarcambios:
                 //Acciones del click del botón del update.
-                String urlP = "http://yotelollevo.mx/webservices/Controller/person.php?f=update";
+                String urlA = "http://yotelollevo.mx/webservices/Controller/person.php?f=update";
 
                 //Tipo de envío (POST, GET), URL, En caso de respuesta, En caso de error.
-                update = new StringRequest(Request.Method.POST, urlP, new Response.Listener<String>() {
+                update = new StringRequest(Request.Method.POST, urlA, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
@@ -151,9 +163,9 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
             case R.id.butt_guardarcuenta:
                 if (Validacion()) {
                     //Acciones del click del botón del update.
-                    String urlC = "http://yotelollevo.mx/webservices/Controller/user.php?f=update";
+                    String urlB = "http://yotelollevo.mx/webservices/Controller/user.php?f=update";
                     //Tipo de envío (POST, GET), URL, En caso de respuesta, En caso de error.
-                    update = new StringRequest(Request.Method.POST, urlC, new Response.Listener<String>() {
+                    update = new StringRequest(Request.Method.POST, urlB, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
@@ -204,6 +216,76 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.editar_fecha:
                 Calendario(fecha, EditarPerfilActivity.this, "EditarPerfilActivity");
+                break;
+
+            case R.id.eliminar:
+
+                alerta.setTitle("Eliminar cuenta");
+                alerta.setMessage("¿Desea eliminar su cuenta?");
+                alerta.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //En caso del click del botón cancelar.
+                        dialog.dismiss();
+                    }
+                });
+                alerta.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //En caso del click del botón aceptar.
+                        String urlC = "http://yotelollevo.mx/webservices/Controller/user.php?f=delete";
+                        update = new StringRequest(Request.Method.POST, urlC, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    //En caso de conexión success.
+                                    JSONObject objetoRespuesta = new JSONObject(response);
+
+                                    if (objetoRespuesta.getInt("code") == 500) {
+                                        //error.
+                                        Toast.makeText(EditarPerfilActivity.this, "error en el servidor", Toast.LENGTH_SHORT).show();
+
+                                    } else if (objetoRespuesta.getInt("code") == 200) {
+                                        //correcta.
+                                        Toast.makeText(EditarPerfilActivity.this, "¡cuenta eliminada!", Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences preferences = getSharedPreferences("yotelollevo", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = preferences.edit();
+
+                                        editor.putString("email", null);
+                                        editor.commit();
+
+                                        Intent intent = new Intent(EditarPerfilActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        EditarPerfilActivity.this.finish();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //En caso de error de conexión.
+                                Toast.makeText(EditarPerfilActivity.this, "no hay conexión a internet", Toast.LENGTH_SHORT).show();
+                            }
+                        }){
+                            //Variables a mandar.
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map variables = new HashMap();
+
+                                SharedPreferences espacio = getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
+                                variables.put("email", espacio.getString("email", null));
+                                return variables;
+                            }
+                        };
+                        //Agregamos la petición al servidor.
+                        conexionServidor.add(update);
+                    }
+                });
+                alerta.show();
                 break;
         }
     }

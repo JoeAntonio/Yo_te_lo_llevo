@@ -84,7 +84,7 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
         switch(v.getId()) {
             case R.id.butt_cuenta:
                 //Acciones del click del botón de crear cuenta.
-                String url = "http://yotelollevo.mx/webservices/Controller/person.php?f=insert";
+                String url = "http://yotelollevo.mx/webservices/Controller/service.php?f=insert";
 
                 //Tipo de envío (POST, GET), URL, En caso de respuesta, En caso de error.
                 if (validacion()) {
@@ -93,6 +93,7 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
                         public void onResponse(String response) {
 
                             try {
+
                                 JSONObject objetoRespuesta = new JSONObject(response);
 
                                 if(objetoRespuesta.getInt("code") == 404){

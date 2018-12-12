@@ -1,9 +1,12 @@
 package yotelollevo.mx.usuario_general.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,7 +31,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import yotelollevo.mx.MainActivity;
 import yotelollevo.mx.R;
+import yotelollevo.mx.usuario_general.InfoActivity;
 import yotelollevo.mx.usuario_general.LoginActivity;
 import yotelollevo.mx.usuario_general.adapter.PictureCardAdapterRecyclerView;
 import yotelollevo.mx.usuario_general.adapter.TopCardAdapterRecyclerView;
@@ -38,12 +43,17 @@ import yotelollevo.mx.usuario_general.model.Top;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InicioFragment extends Fragment implements View.OnClickListener {
+public class InicioFragment extends Fragment implements TopCardAdapterRecyclerView.OnItemClickListener {
 
     private RecyclerView recyclerPictureCard, recyclerTopCard;
-
     private TopCardAdapterRecyclerView topCardAdapterRecyclerView;
     private ArrayList<Top> aTop;
+    private PictureCardAdapterRecyclerView pictureCardAdapterRecyclerView;
+    private ArrayList<Picture> aPicture;
+
+    public static final String EXTRA_IMAGEN = "imagen";
+    public static final String EXTRA_RESUMEN = "resumen";
+    public static final String EXTRA_DESCRIPCION = "descripcion";
 
     private ProgressBar progressBar;
 
@@ -69,30 +79,86 @@ public class InicioFragment extends Fragment implements View.OnClickListener {
         recyclerTopCard.setHasFixedSize(true);
         recyclerTopCard.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        recyclerPictureCard.setHasFixedSize(true);
+        recyclerPictureCard.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         aTop = new ArrayList<>();
 
-        //Pictures.
-        LinearLayoutManager linearPictures = new LinearLayoutManager(getActivity());
-        linearPictures.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerPictureCard.setLayoutManager(linearPictures);
-
-        PictureCardAdapterRecyclerView pictureCardAdapterRecyclerView =
-                new PictureCardAdapterRecyclerView(buidPictures(), R.layout.picture_cardview, getActivity());
-        recyclerPictureCard.setAdapter(pictureCardAdapterRecyclerView);
+        aPicture = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(getActivity());
-        obtenerTops();
+
+        obtenerTop();
+        obtenerPicture();
 
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
+    private void obtenerPicture() {
+        // Se comprueba la conexión a Internet.
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
+        // Si hay conexión a Internet la variable hayConexion es verdadera.
+        boolean hayConexion = networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
+
+        // Si hay conexión a Internet se carga la url.
+        if (hayConexion) {
+            String url = "http://yotelollevo.mx/webservices/Controller/advert.php?f=getAdverts";
+
+            final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+
+                                progressBar.setVisibility(View.VISIBLE);
+                                progressBar.setProgress(0);
+
+                                JSONArray jsonArray = response.getJSONArray("adverts");
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+
+                                    progressBar.setVisibility(View.GONE);
+
+                                    JSONObject hit = jsonArray.getJSONObject(i);
+
+                                    String imagen = hit.getString("img");
+                                    String titulo = hit.getString("title");
+                                    String subtitulo = hit.getString("desc");
+
+                                    aPicture.add(new Picture(imagen,titulo,subtitulo));
+                                }
+
+                                pictureCardAdapterRecyclerView = new PictureCardAdapterRecyclerView(getActivity(), aPicture);
+                                recyclerPictureCard.setAdapter(pictureCardAdapterRecyclerView);
+
+                                LinearLayoutManager linearPictures = new LinearLayoutManager(getActivity());
+                                linearPictures.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                recyclerPictureCard.setLayoutManager(linearPictures);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+
+            //Agregamos la petición al servidor.
+            mRequestQueue.add(request);
+
+        } else {
+            //si no hay conexión a Internet se carga el mensaje de error.
+            Toast.makeText(getActivity(),"No se puede conectar a Internet", Toast.LENGTH_LONG).show();
+        }
     }
 
-    private void obtenerTops() {
+    private void obtenerTop() {
         // Se comprueba la conexión a Internet.
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -122,12 +188,16 @@ public class InicioFragment extends Fragment implements View.OnClickListener {
                                     JSONObject hit = jsonArray.getJSONObject(i);
 
                                     String imagen = hit.getString("img");
+                                    String resumen = hit.getString("name");
+                                    String descripcion = hit.getString("desc");
 
-                                    aTop.add(new Top(imagen));
+                                    aTop.add(new Top(imagen, resumen, descripcion));
                                 }
 
                                 topCardAdapterRecyclerView = new TopCardAdapterRecyclerView(getActivity(), aTop);
                                 recyclerTopCard.setAdapter(topCardAdapterRecyclerView);
+                                topCardAdapterRecyclerView.setOnItemClickListener(InicioFragment.this);
+
                                 recyclerTopCard.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
                             } catch (JSONException e) {
@@ -143,20 +213,23 @@ public class InicioFragment extends Fragment implements View.OnClickListener {
 
             //Agregamos la petición al servidor.
             mRequestQueue.add(request);
-
         } else {
             //si no hay conexión a Internet se carga el mensaje de error.
             Toast.makeText(getActivity(),"No se puede conectar a Internet", Toast.LENGTH_LONG).show();
         }
     }
 
-    public ArrayList<Picture> buidPictures() {
-        ArrayList<Picture> pictures = new ArrayList<>();
-        pictures.add(new Picture(R.drawable.tiendas_comerciales, "Ahorra tiempo....", "Yo te lo llevo"));
-        pictures.add(new Picture(R.drawable.envios, "Novedades...", "Yo te lo llevo"));
-        pictures.add(new Picture(R.drawable.alimentos, "Ahorra tiempo....", "Yo te lo llevo"));
-        pictures.add(new Picture(R.drawable.mudanza, "Novedades...", "Yo te lo llevo"));
-        return pictures;
+    @Override
+    public void onItemClick(int position) {
+        Intent detailIntent = new Intent(getActivity(), InfoActivity.class);
+
+        Top clickedItem = aTop.get(position);
+
+        detailIntent.putExtra(EXTRA_IMAGEN, clickedItem.getTop());
+        detailIntent.putExtra(EXTRA_RESUMEN, clickedItem.getResumen());
+        detailIntent.putExtra(EXTRA_DESCRIPCION, clickedItem.getDescripcion());
+
+        startActivity(detailIntent);
     }
 
 }
