@@ -16,25 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
-import yotelollevo.mx.MainActivity;
 import yotelollevo.mx.R;
 import yotelollevo.mx.usuario_general.InfoActivity;
-import yotelollevo.mx.usuario_general.LoginActivity;
 import yotelollevo.mx.usuario_general.adapter.PictureCardAdapterRecyclerView;
 import yotelollevo.mx.usuario_general.adapter.TopCardAdapterRecyclerView;
 import yotelollevo.mx.usuario_general.model.Picture;
@@ -51,7 +44,7 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
     private PictureCardAdapterRecyclerView pictureCardAdapterRecyclerView;
     private ArrayList<Picture> aPicture;
 
-    public static final String EXTRA_IMAGEN = "imagen";
+    public static final String EXTRA_IMAGEN = "imagenV";
     public static final String EXTRA_RESUMEN = "resumen";
     public static final String EXTRA_DESCRIPCION = "descripcion";
 
@@ -188,10 +181,11 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
                                     JSONObject hit = jsonArray.getJSONObject(i);
 
                                     String imagen = hit.getString("img");
-                                    String resumen = hit.getString("name");
+                                    String resumen = hit.getString("resume");
                                     String descripcion = hit.getString("desc");
+                                    String imagenV = hit.getString("vector");
 
-                                    aTop.add(new Top(imagen, resumen, descripcion));
+                                    aTop.add(new Top(imagen, resumen, descripcion, imagenV));
                                 }
 
                                 topCardAdapterRecyclerView = new TopCardAdapterRecyclerView(getActivity(), aTop);
@@ -225,7 +219,7 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
 
         Top clickedItem = aTop.get(position);
 
-        detailIntent.putExtra(EXTRA_IMAGEN, clickedItem.getTop());
+        detailIntent.putExtra(EXTRA_IMAGEN, clickedItem.getVector());
         detailIntent.putExtra(EXTRA_RESUMEN, clickedItem.getResumen());
         detailIntent.putExtra(EXTRA_DESCRIPCION, clickedItem.getDescripcion());
 

@@ -84,7 +84,7 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
         switch(v.getId()) {
             case R.id.butt_cuenta:
                 //Acciones del click del botón de crear cuenta.
-                String url = "http://yotelollevo.mx/webservices/Controller/service.php?f=insert";
+                String url = "http://yotelollevo.mx/webservices/Controller/person.php?f=insert";
 
                 //Tipo de envío (POST, GET), URL, En caso de respuesta, En caso de error.
                 if (validacion()) {
@@ -239,6 +239,15 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(tittle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional.
+        Intent intent = new Intent(CrearCuentaActivity.this, LoginActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }
 

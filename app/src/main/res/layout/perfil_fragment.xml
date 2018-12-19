@@ -44,7 +44,7 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="@dimen/width_cardviewfront"
                     android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/background_cardview"
+                    cardview:cardBackgroundColor="@color/background_cardview"
                     android:layout_marginTop="@dimen/marginTopButton"
                     android:layout_marginBottom="@dimen/textSize_titulo"
                     cardview:cardCornerRadius="@dimen/cornerRadius_cardView"

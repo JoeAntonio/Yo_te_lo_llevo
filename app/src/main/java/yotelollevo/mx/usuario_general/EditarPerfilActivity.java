@@ -67,9 +67,6 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
         guardarCuenta = (Button) findViewById(R.id.butt_guardarcuenta);
         eliminar = (TextView) findViewById(R.id.eliminar);
 
-        //Manda a llamar al texto subrayado.
-        eliminar.setText(Html.fromHtml(getResources().getString(R.string.eliminar_cuenta)));
-
         alerta = new AlertDialog.Builder(this);
 
         CargarDatos();
@@ -243,7 +240,7 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
 
                                     if (objetoRespuesta.getInt("code") == 500) {
                                         //error.
-                                        Toast.makeText(EditarPerfilActivity.this, "error en el servidor", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditarPerfilActivity.this, "error en el servidor, intentelo más tarde", Toast.LENGTH_SHORT).show();
 
                                     } else if (objetoRespuesta.getInt("code") == 200) {
                                         //correcta.
@@ -353,5 +350,14 @@ public class EditarPerfilActivity extends AppCompatActivity implements View.OnCl
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(tittle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional.
+        Intent intent = new Intent(EditarPerfilActivity.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

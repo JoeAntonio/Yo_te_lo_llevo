@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@color/subfondo"
-    tools:context=".usuario_general.InfoActivity">
+    tools:context=".usuario_general.InfoActivity"
+    >
 
     <include layout="@layout/actionbar_toolbar"/>
 
@@ -26,10 +28,11 @@
 
             <ImageView
                 android:id="@+id/vectorImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/marginVector"
+                android:layout_height="@dimen/marginVector"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/restrinccion"
+                android:layout_marginTop="@dimen/marginText"
                 />
 
         </RelativeLayout>
@@ -48,23 +51,27 @@
                 android:padding="@dimen/padding_horizontal_login"
                 >
 
-                <me.biubiubiu.justifytext.library.JustifyTextView
+                <TextView
                     android:id="@+id/info_resumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/textSize_normal"
+                    android:textSize="@dimen/textSize_subtitulo"
                     android:textColor="@android:color/white"
                     android:text="@string/resumen"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
                     />
 
-                <me.biubiubiu.justifytext.library.JustifyTextView
+                <TextView
                     android:id="@+id/info_detalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/textSize_normal"
+                    android:textSize="@dimen/textSize_subtitulo"
                     android:textColor="@android:color/white"
                     android:text="@string/detalles"
                     android:layout_marginTop="@dimen/marginText"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
                     />
 
                 <Button

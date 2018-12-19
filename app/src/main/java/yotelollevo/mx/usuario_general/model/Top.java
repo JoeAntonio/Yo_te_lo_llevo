@@ -2,12 +2,13 @@ package yotelollevo.mx.usuario_general.model;
 
 public class Top {
 
-    String top, resumen, descripcion;
+    String top, resumen, descripcion, vector;
 
-    public Top(String top, String resumen, String descripcion) {
+    public Top(String top, String resumen, String descripcion, String vector) {
         this.top = top;
         this.resumen = resumen;
         this.descripcion = descripcion;
+        this.vector = vector;
     }
 
     public String getTop() {
@@ -32,5 +33,13 @@ public class Top {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getVector() {
+        return vector;
+    }
+
+    public void setVector(String vector) {
+        this.vector = vector;
     }
 }

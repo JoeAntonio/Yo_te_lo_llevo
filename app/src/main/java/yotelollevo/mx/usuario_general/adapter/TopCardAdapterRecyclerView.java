@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -37,7 +36,7 @@ public class TopCardAdapterRecyclerView extends RecyclerView.Adapter<TopCardAdap
     @NonNull
     @Override
     public TopCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(aContext).inflate(R.layout.tops, parent, false);
+        View v = LayoutInflater.from(aContext).inflate(R.layout.picture_tops, parent, false);
         return new TopCardViewHolder(v);
     }
 

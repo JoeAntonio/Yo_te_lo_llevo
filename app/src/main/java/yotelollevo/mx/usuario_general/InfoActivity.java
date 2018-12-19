@@ -7,9 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import yotelollevo.mx.MainActivity;
 import yotelollevo.mx.R;
 
 import static yotelollevo.mx.usuario_general.fragments.InicioFragment.EXTRA_DESCRIPCION;
@@ -18,8 +20,8 @@ import static yotelollevo.mx.usuario_general.fragments.InicioFragment.EXTRA_RESU
 
 public class InfoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private me.biubiubiu.justifytext.library.JustifyTextView infoR, infoD;
-    private ImageView vector;
+    private TextView infoR, infoD;
+    private ImageView imagen_vector;
     private Button boton;
 
     @Override
@@ -30,18 +32,18 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = getIntent();
 
-        String imagen = intent.getStringExtra(EXTRA_IMAGEN);
+        String imagenV = intent.getStringExtra(EXTRA_IMAGEN);
         String resumen = intent.getStringExtra(EXTRA_RESUMEN);
         String descripcion = intent.getStringExtra(EXTRA_DESCRIPCION);
 
-        infoR = (me.biubiubiu.justifytext.library.JustifyTextView) findViewById(R.id.info_resumen);
-        infoD = (me.biubiubiu.justifytext.library.JustifyTextView) findViewById(R.id.info_detalle);
-        vector = (ImageView) findViewById(R.id.vectorImage);
+        infoR = (TextView) findViewById(R.id.info_resumen);
+        infoD = (TextView) findViewById(R.id.info_detalle);
+        imagen_vector = (ImageView) findViewById(R.id.vectorImage);
         boton = (Button) findViewById(R.id.butt_siguiente);
 
         boton.setOnClickListener(this);
 
-        Picasso.get().load(imagen).fit().centerInside().into(vector);
+        Picasso.get().load(imagenV).fit().centerInside().into(imagen_vector);
         infoR.setText(resumen);
         infoD.setText(descripcion);
     }
@@ -61,5 +63,14 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(tittle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional.
+        Intent intent = new Intent(InfoActivity.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

@@ -26,7 +26,7 @@ public class PictureCardAdapterRecyclerView extends RecyclerView.Adapter<Picture
     @NonNull
     @Override
     public PictureCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(aContext).inflate(R.layout.picture_cardview, parent, false);
+        View v = LayoutInflater.from(aContext).inflate(R.layout.picture_publicidad, parent, false);
         return new PictureCardViewHolder(v);
     }
 

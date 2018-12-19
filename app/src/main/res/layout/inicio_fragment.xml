@@ -27,19 +27,10 @@
                 android:orientation="vertical"
                 >
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/editText_margin_createaccount"
-                    />
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/cardRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/editText_margin_createaccount"
                     />
 
                 <TextView
@@ -50,6 +41,14 @@
                     android:layout_gravity="center"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/editText_margin_createaccount"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/editText_margin_createaccount"
                     />
 

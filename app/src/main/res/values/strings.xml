@@ -21,6 +21,7 @@
     <string name="cerrarsesion">Cerrar sesión</string>
     <string name="toolbar_orden">Orden de servicio</string>
     <string name="toolbar_servicio">Servicios</string>
+    <string name="toolabar_historial">Historial</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -38,7 +39,7 @@
     <string name="completo">Nombre completo:</string>
     <string name="todo">TODO</string>
     <string name="datos_cuenta">Datos cuenta</string>
-    <string name="eliminar_cuenta"> <![CDATA[<u>Eliminar cuenta</u>]]> </string>
+    <string name="eliminar_cuenta">Eliminar cuenta</string>
     <string name="resumen">Resumen</string>
     <string name="detalles">Detalles</string>
     <string name="extra">Extra</string>
@@ -46,5 +47,11 @@
     <string name="wifi">No hay internet</string>
     <string name="datosOrd">Datos de orden</string>
     <string name="tipoSer">Tipo de servicio:</string>
-    <string name="desc">Descripción:</string>
+    <string name="desc">Detalla tu pedido:</string>
+    <string name="comparte">Comparte tu destino desde</string>
+    <string name="googleMaps">google maps</string>
+    <string name="indi">Origen y destino:</string>
+    <string name="numero_orden">N° orden de servicio:</string>
+    <string name="fecha_orden">Fecha:</string>
+    <string name="desc_orden">Descripción:</string>
 </resources>

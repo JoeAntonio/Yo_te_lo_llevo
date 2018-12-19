@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
@@ -20,11 +18,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-import yotelollevo.mx.usuario_general.InfoActivity;
 import yotelollevo.mx.usuario_general.LoginActivity;
-import yotelollevo.mx.usuario_general.OrdenActivity;
+import yotelollevo.mx.usuario_general.HistorialActivity;
 import yotelollevo.mx.usuario_general.adapter.ViewPagerAdapter;
 import yotelollevo.mx.usuario_general.fragments.ContactoFragment;
 import yotelollevo.mx.usuario_general.fragments.InicioFragment;
@@ -38,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     final String TAG = this.getClass().getName();
 
     boolean twice;
+
+    private RequestQueue conexionServidor;
+    private StringRequest peticion;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -68,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        conexionServidor = Volley.newRequestQueue(this);
+        ObtenerDatos();
     }
 
     private void iconColor(TabLayout.Tab tab, String color) {
@@ -114,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings_historial:
-
+                Intent historial = new Intent(MainActivity.this, HistorialActivity.class);
+                startActivity(historial);
                 return true;
 
             case R.id.action_settings_cerrarsesion:
@@ -163,5 +180,59 @@ public class MainActivity extends AppCompatActivity {
             }, 3000);
 
         }
+    }
+
+    public void ObtenerDatos() {
+        String url = "http://yotelollevo.mx/webservices/Controller/person.php?f=getPerson";
+
+        peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objetoRespuesta = new JSONObject(response);
+                    if(objetoRespuesta.getInt("code") == 404){
+                        //error.
+
+                    }else if(objetoRespuesta.getInt("code") == 200){
+                        //correcta.
+                        JSONObject datosUsuario = objetoRespuesta.getJSONObject("dataPerson");
+                        SharedPreferences espacio = getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = espacio.edit();
+
+                        editor.putString("id", datosUsuario.getString("id"));
+                        editor.putString("nombres", datosUsuario.getString("name"));
+                        editor.putString("apellidos", datosUsuario.getString("lastName"));
+                        editor.putString("fecha", datosUsuario.getString("birthday"));
+                        editor.putString("telefono", datosUsuario.getString("phone"));
+                        editor.putString("email", datosUsuario.getString("email"));
+                        editor.commit();
+                    }
+
+                } catch (JSONException e){
+                    e.printStackTrace();
+
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "no hay conexión a internet", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map map = new HashMap();
+                SharedPreferences espacio = getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
+                String email = espacio.getString("email", null);
+                map.put("email", email);
+                return map;
+            }
+        };
+
+        conexionServidor.add(peticion);
     }
 }
