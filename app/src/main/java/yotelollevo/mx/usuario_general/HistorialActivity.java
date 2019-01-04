@@ -64,6 +64,7 @@ public class HistorialActivity extends AppCompatActivity {
         aHistorial = new ArrayList<>();
 
         conexionServidor = Volley.newRequestQueue(HistorialActivity.this);
+
         obtenerHistorial();
     }
 
@@ -72,7 +73,7 @@ public class HistorialActivity extends AppCompatActivity {
 
         historial = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response)     {
                 try {
 
                     JSONObject objetoRespuesta = new JSONObject(response);
@@ -99,8 +100,9 @@ public class HistorialActivity extends AppCompatActivity {
                             String nombre = hit.getString("name");
                             String fecha = hit.getString("date");
                             String detalle = hit.getString("detail");
+                            String servicio = hit.getString("nameTypeService");
 
-                            aHistorial.add(new Historial(nombre,fecha,detalle,String.valueOf(id)));
+                            aHistorial.add(new Historial(nombre,fecha,detalle,String.valueOf(id),servicio));
                             id--;
                         }
 

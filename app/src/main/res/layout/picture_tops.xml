@@ -5,7 +5,7 @@
     android:id="@+id/pictureTop"
     android:layout_width="@dimen/margin_circleImage"
     android:layout_height="@dimen/margintop_height"
-    cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
+    cardview:cardCornerRadius="@dimen/cornerRadius_lite"
     android:layout_marginBottom="@dimen/marginTopButton"
     android:layout_margin="@dimen/marginCard"
     cardview:cardBackgroundColor="@color/background_cardview"
@@ -13,13 +13,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/margintop_height"
         >
 
         <ImageView
             android:id="@+id/id_top"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="@dimen/margintop_height"
             android:scaleType="centerCrop"
             />
 

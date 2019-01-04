@@ -9,17 +9,17 @@
     cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
     android:fitsSystemWindows="true"
     android:layout_marginBottom="@dimen/marginTopButton"
-    cardview:cardBackgroundColor="@color/background_cardview"
+    cardview:cardBackgroundColor="@color/subfondo"
     >
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/appBarLayout_height"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/appBarLayout_height"
             android:orientation="vertical"
             android:padding="@dimen/activity_vertical_margin"
             tools:ignore="UselessParent"
@@ -40,7 +40,7 @@
                     android:text="@string/numero_orden"
                     android:textSize="@dimen/textSize_lite"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sindato"
                     android:textSize="@dimen/textSize_lite"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -76,10 +76,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/completo"
+                    android:text="@string/anombrede"
                     android:textSize="@dimen/textSize_lite"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sindato"
                     android:textSize="@dimen/textSize_lite"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -118,7 +118,7 @@
                     android:text="@string/fecha_orden"
                     android:textSize="@dimen/textSize_lite"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -136,7 +136,46 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sindato"
                     android:textSize="@dimen/textSize_lite"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginTop="@dimen/editText_margin_createaccount"
+                tools:ignore="UselessLeaf"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tipoSer"
+                    android:textSize="@dimen/textSize_lite"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/cardElevation"
+                    android:layout_marginEnd="@dimen/cardElevation"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/historial_servicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sindato"
+                    android:textSize="@dimen/textSize_lite"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -157,7 +196,7 @@
                     android:text="@string/desc_orden"
                     android:textSize="@dimen/textSize_lite"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 
@@ -175,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sindato"
                     android:textSize="@dimen/textSize_lite"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:layout_weight="1"
                     />
 

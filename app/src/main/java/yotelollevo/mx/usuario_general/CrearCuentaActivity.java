@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -100,6 +101,10 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
                                     //Error en la insersión de datos.
                                     Toast.makeText(CrearCuentaActivity.this, "este correo ya existe", Toast.LENGTH_SHORT).show();
 
+                                } else if(objetoRespuesta.getInt("code") == 405){
+                                    //Error en la insersión de datos.
+                                    Toast.makeText(CrearCuentaActivity.this, "este teléfono ya existe", Toast.LENGTH_SHORT).show();
+
                                 } else if(objetoRespuesta.getInt("code") == 200){
                                     //Si es correcta.
                                     Toast.makeText(CrearCuentaActivity.this, "¡cuenta creada con exito!", Toast.LENGTH_SHORT).show();
@@ -170,14 +175,15 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
             fecha.requestFocus();
             return false;
 
+        }else if (!validarEmail(usuario.getText().toString())) {
+            usuario.setError("Email no válido");
+            return false;
+
         }else if (telefono.getText().toString().isEmpty()) {
             telefono.setError("campo obligatorio");
             telefono.requestFocus();
             return false;
 
-        } else if (!validarCorreo(usuario.getText().toString())) {
-            usuario.setError("correo no valido");
-            return false;
         } else if (pass.getText().toString().isEmpty()) {
             pass.setError("campo obligatorio");
             pass.requestFocus();
@@ -197,14 +203,9 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
         return true;
     }
 
-    //Se valida el correo.
-    private boolean validarCorreo(String correo) {
-        String EMAIL_PATTERN = "^[A-Za-z0-9\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z]{2,})$";
-
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(correo);
-        return  matcher.matches();
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 
     public void Calendario(final EditText txt, final Context activity, final String nombreActividad) {
@@ -250,4 +251,3 @@ public class CrearCuentaActivity extends AppCompatActivity implements View.OnCli
         this.finish();
     }
 }
-

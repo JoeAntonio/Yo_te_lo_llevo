@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -11,20 +10,6 @@
     >
 
     <include layout="@layout/actionbar_toolbar"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/layoutWidth_cardView"
-            android:background="@color/subfondo"
-            />
-
-    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,169 +21,189 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:padding="@dimen/activity_vertical_margin"
             >
 
-            <android.support.v7.widget.CardView
-                android:layout_width="@dimen/width_cardviewfront"
-                android:layout_height="match_parent"
-                cardview:cardBackgroundColor="@color/background_cardview"
-                android:layout_marginTop="@dimen/marginTopButton"
-                android:layout_marginBottom="@dimen/textSize_titulo"
-                cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/datosOrd"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_titulo"
+                    android:textStyle="bold"
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/marginText"
                     >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/datosOrd"
+                        android:text="@string/tipoSer"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/textSize_titulo"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/textSize_normal"
                         android:layout_marginTop="@dimen/marginTopButton"
+                        android:layout_weight="1"
                         />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:layout_marginTop="@dimen/marginText"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tipoSer"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/textSize_normal"
-                            android:layout_marginTop="@dimen/marginTopButton"
-                            android:layout_weight="1"
-                            />
-
-                        <Spinner
-                            android:id="@+id/spinner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="@dimen/marginTopButton"
-                            android:layout_marginEnd="@dimen/marginTopButton" />
-
-                    </LinearLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        >
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/orden_nombre"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/completo"
-                            android:singleLine="true"
-                            app:errorEnabled="true"
-                            android:inputType="text" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        >
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/orden_mensaje"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/desc"
-                            android:layout_marginBottom="@dimen/marginTopButton"
-                            android:height="@dimen/layoutHeight_grid"
-                            android:gravity="top"
-                            android:inputType="textMultiLine"
-                            />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        >
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/orden_indicaciones"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/indi"
-                            android:layout_marginBottom="@dimen/marginTopButton"
-                            android:height="@dimen/layoutHeight_grid"
-                            android:gravity="top"
-                            android:inputType="textMultiLine"
-                            />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:layout_marginTop="@dimen/editText_margin_createaccount"
-                        >
-
-                        <TextView
-                            android:id="@+id/orden_comparte"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/comparte"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/textSize_lite"
-                            />
-
-                        <TextView
-                            android:id="@+id/orden_googleMaps"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@+id/orden_comparte"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_toEndOf="@id/orden_comparte"
-                            android:layout_toRightOf="@id/orden_comparte"
-                            android:text="@string/googleMaps"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="@dimen/textSize_lite"
-                            android:textStyle="bold"
-                            android:onClick="onClick"
-                            />
-
-                    </RelativeLayout>
-
-                    <Button
-                        android:id="@+id/orden_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/enviar"
-                        android:theme="@style/RaisedButtonDark"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        android:textAllCaps="false"
-                        />
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/marginTopButton"
+                        android:layout_marginEnd="@dimen/marginTopButton" />
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInput_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/orden_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/anombrede"
+                        android:singleLine="true"
+                        app:errorEnabled="true"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInput_mensaje"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/orden_mensaje"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/desc"
+                        android:layout_marginBottom="@dimen/marginTopButton"
+                        android:height="@dimen/layoutHeight_grid"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInput_indicaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/orden_indicaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/indi"
+                        android:layout_marginBottom="@dimen/marginTopButton"
+                        android:height="@dimen/layoutHeight_grid"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/editText_margin_createaccount"
+                    >
+
+                    <TextView
+                        android:id="@+id/orden_comparte"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/comparte"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/textSize_lite"
+                        />
+
+                    <TextView
+                        android:id="@+id/orden_googleMaps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/orden_comparte"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toEndOf="@id/orden_comparte"
+                        android:layout_toRightOf="@id/orden_comparte"
+                        android:text="@string/googleMaps"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/textSize_lite"
+                        android:textStyle="bold"
+                        android:onClick="onClick"
+                        />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/orden_textoLlamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/texto_viajeUrgente"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/textSize_titulo"
+                    android:layout_marginBottom="@dimen/marginTopButton"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/marginTopButton"
+                    android:padding="@dimen/activity_vertical_margin"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+
+                <Button
+                    android:id="@+id/orden_llamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/llamar"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    />
+
+
+                <Button
+                    android:id="@+id/orden_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enviar"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textAllCaps="false"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
         

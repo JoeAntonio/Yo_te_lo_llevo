@@ -38,11 +38,13 @@ public class HistorialCardAdapterRecyclerView extends RecyclerView.Adapter<Histo
         String stringFec = historial.getFecha();
         String stringDet = historial.getDetalle();
         String stringOrd = historial.getOrdenSer();
+        String stringSer = historial.getServicio();
 
         holder.Nombres.setText(stringNom);
         holder.Fecha.setText(stringFec);
         holder.Detalle.setText(stringDet);
         holder.Orden.setText(stringOrd);
+        holder.Serv.setText(stringSer);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class HistorialCardAdapterRecyclerView extends RecyclerView.Adapter<Histo
 
     class HistorialViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Nombres, Fecha, Detalle, Orden;
+        TextView Nombres, Fecha, Detalle, Orden, Serv;
 
         HistorialViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class HistorialCardAdapterRecyclerView extends RecyclerView.Adapter<Histo
             Fecha = (TextView) itemView.findViewById(R.id.historial_fecha);
             Detalle = (TextView) itemView.findViewById(R.id.historial_detalle);
             Orden = (TextView) itemView.findViewById(R.id.historial_ordenServicio);
+            Serv = (TextView) itemView.findViewById(R.id.historial_servicio);
         }
     }
 }

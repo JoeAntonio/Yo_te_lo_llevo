@@ -47,10 +47,14 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
     public static final String EXTRA_IMAGEN = "imagenV";
     public static final String EXTRA_RESUMEN = "resumen";
     public static final String EXTRA_DESCRIPCION = "descripcion";
+    public static final String EXTRA_NOMBRE = "nombreI";
+    public static final String EXTRA_FONDO = "back";
 
     private ProgressBar progressBar;
 
     private RequestQueue mRequestQueue;
+
+    public static final String URL = "http://yotelollevo.mx/webservices/img/";
 
     public InicioFragment() {
         // Required empty public constructor
@@ -117,7 +121,7 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
 
                                     JSONObject hit = jsonArray.getJSONObject(i);
 
-                                    String imagen = hit.getString("img");
+                                    String imagen = URL+hit.getString("img");
                                     String titulo = hit.getString("title");
                                     String subtitulo = hit.getString("desc");
 
@@ -153,7 +157,7 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
 
     private void obtenerTop() {
         // Se comprueba la conexión a Internet.
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         // Si hay conexión a Internet la variable hayConexion es verdadera.
@@ -180,19 +184,23 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
 
                                     JSONObject hit = jsonArray.getJSONObject(i);
 
-                                    String imagen = hit.getString("img");
+                                    String imagen = URL+hit.getString("img");
                                     String resumen = hit.getString("resume");
                                     String descripcion = hit.getString("desc");
-                                    String imagenV = hit.getString("vector");
+                                    String imagenV = URL+hit.getString("vector");
+                                    String nombreImg = hit.getString("name");
+                                    String color = hit.getString("colorBack");
 
-                                    aTop.add(new Top(imagen, resumen, descripcion, imagenV));
+                                    aTop.add(new Top(imagen, resumen, descripcion, imagenV, nombreImg, color));
                                 }
 
                                 topCardAdapterRecyclerView = new TopCardAdapterRecyclerView(getActivity(), aTop);
                                 recyclerTopCard.setAdapter(topCardAdapterRecyclerView);
-                                topCardAdapterRecyclerView.setOnItemClickListener(InicioFragment.this);
 
-                                recyclerTopCard.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                                topCardAdapterRecyclerView.setOnItemClickListener(InicioFragment.this);
+                                recyclerTopCard.setLayoutManager(new GridLayoutManager(getActivity(), 2,
+                                        GridLayoutManager.VERTICAL, false));
+
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -222,6 +230,8 @@ public class InicioFragment extends Fragment implements TopCardAdapterRecyclerVi
         detailIntent.putExtra(EXTRA_IMAGEN, clickedItem.getVector());
         detailIntent.putExtra(EXTRA_RESUMEN, clickedItem.getResumen());
         detailIntent.putExtra(EXTRA_DESCRIPCION, clickedItem.getDescripcion());
+        detailIntent.putExtra(EXTRA_NOMBRE, clickedItem.getNombre());
+        detailIntent.putExtra(EXTRA_FONDO, clickedItem.getFondo());
 
         startActivity(detailIntent);
     }

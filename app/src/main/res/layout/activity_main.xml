@@ -19,6 +19,7 @@
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed"
         app:tabGravity="fill"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
     <LinearLayout

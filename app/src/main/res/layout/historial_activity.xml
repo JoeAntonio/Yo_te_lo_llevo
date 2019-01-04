@@ -11,20 +11,6 @@
 
     <include layout="@layout/actionbar_toolbar" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/layoutWidth_cardView"
-            android:background="@color/subfondo"
-            />
-
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +30,6 @@
             android:id="@+id/historialRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/editText_margin_createaccount"
             />
 
     </LinearLayout>

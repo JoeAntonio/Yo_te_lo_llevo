@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".usuario_general.EditarPerfilActivity"
@@ -46,19 +45,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/layoutWidth_cardView"
-            android:background="@color/subfondo"
-            />
-
-    </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -70,202 +56,182 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:padding="@dimen/activity_vertical_margin"
             >
 
-            <android.support.v7.widget.CardView
-                android:layout_width="@dimen/width_cardviewfront"
-                android:layout_height="match_parent"
-                cardview:cardBackgroundColor="@color/background_cardview"
-                android:layout_marginTop="@dimen/marginTopButton"
-                cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin"
                 >
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/datosperfil"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_titulo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    />
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:theme="@style/EditTextBlack"
+                    android:layout_marginTop="@dimen/marginTopButton"
                     >
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_nombre"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/datosperfil"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/textSize_titulo"
-                        android:textStyle="bold"
-                        android:layout_marginTop="@dimen/marginTopButton"
+                        android:hint="@string/nombres"
+                        android:singleLine="true"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_apellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/apellidos"
+                        android:singleLine="true"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_fecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fechana"
+                        android:singleLine="true"
+                        android:inputType="date"
                         />
 
-                    <android.support.design.widget.TextInputLayout
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_telefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        >
+                        android:hint="@string/telefono"
+                        android:singleLine="true"
+                        android:inputType="text" />
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_nombre"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/nombres"
-                            android:singleLine="true"
-                            android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
 
-                    </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/butt_guardarcambios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crear_cuenta"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textAllCaps="false"
+                    />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        >
+            </LinearLayout>
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_apellido"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/apellidos"
-                            android:singleLine="true"
-                            android:inputType="text" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        >
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_fecha"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/fechana"
-                            android:singleLine="true"
-                            android:inputType="date"
-                            />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        >
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_telefono"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/telefono"
-                            android:singleLine="true"
-                            android:inputType="text" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/butt_guardarcambios"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/crear_cuenta"
-                        android:theme="@style/RaisedButtonDark"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        android:textAllCaps="false"
-                        />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="@dimen/width_cardviewfront"
-                android:layout_height="match_parent"
-                cardview:cardBackgroundColor="@color/background_cardview"
-                android:layout_marginTop="@dimen/marginTopButton"
-                android:layout_marginBottom="@dimen/textSize_titulo"
-                cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/marginTopButton"
                 >
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/datos_cuenta"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_titulo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    />
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:theme="@style/EditTextBlack"
+                    android:layout_marginTop="@dimen/marginTopButton"
                     >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/datos_cuenta"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/textSize_titulo"
-                        android:textStyle="bold"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        />
-
-                    <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        >
+                        android:hint="@string/password"
+                        android:singleLine="true"
+                        android:inputType="textPassword" />
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/password"
-                            android:singleLine="true"
-                            android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
 
-                    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/EditTextBlack"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    >
 
-                    <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editar_confpass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:theme="@style/EditTextBlack"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        >
+                        android:hint="@string/confirmapa"
+                        android:singleLine="true"
+                        android:inputType="textPassword" />
 
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/editar_confpass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/confirmapa"
-                            android:singleLine="true"
-                            android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
 
-                    </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/butt_guardarcuenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crear_cuenta"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textAllCaps="false"
+                    />
 
-                    <Button
-                        android:id="@+id/butt_guardarcuenta"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/crear_cuenta"
-                        android:theme="@style/RaisedButtonDark"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        android:textAllCaps="false"
-                        />
+                <TextView
+                    android:id="@+id/eliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eliminar_cuenta"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textSize_lite"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/marginTopButton"
+                    />
 
-                    <TextView
-                        android:id="@+id/eliminar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/eliminar_cuenta"
-                        android:layout_marginTop="@dimen/marginTopButton"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/textSize_lite"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/marginTopButton"
-                        />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
 

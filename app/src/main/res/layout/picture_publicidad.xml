@@ -5,7 +5,7 @@
     android:id="@+id/pictureCard"
     android:layout_width="@dimen/layoutWidth_cardView"
     android:layout_height="@dimen/layoutHeight_cardView"
-    cardview:cardCornerRadius="@dimen/cornerRadius_cardView"
+    cardview:cardCornerRadius="@dimen/cornerRadius_lite"
     android:layout_marginBottom="@dimen/marginTopButton"
     android:layout_margin="@dimen/marginCard"
     cardview:cardBackgroundColor="@color/background_cardview"

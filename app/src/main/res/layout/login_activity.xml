@@ -7,7 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimary"
-    tools:context=".usuario_general.LoginActivity">
+    tools:context=".usuario_general.LoginActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,11 +95,13 @@
                     android:textAllCaps="false"
                     />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    >
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    tools:ignore="InefficientWeight"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/textView_cuenta"
@@ -111,14 +114,16 @@
                         />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/cornerRadius_lite"
+                        tools:ignore="RtlHardcoded,RtlSymmetry"
+                        />
+
+                    <TextView
                         android:id="@+id/textView_crear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/textView_cuenta"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_toEndOf="@id/textView_cuenta"
-                        android:layout_toRightOf="@id/textView_cuenta"
                         android:text="@string/crear"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/textSize_lite"
@@ -126,7 +131,19 @@
                         android:onClick="onClick"
                         />
 
-                </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/login_recuperar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recuperar"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/marginTopButton"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textSize_lite"
+                    android:textStyle="bold"
+                    />
 
             </LinearLayout>
 

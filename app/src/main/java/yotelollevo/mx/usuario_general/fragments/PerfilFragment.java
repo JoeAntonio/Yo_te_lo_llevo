@@ -32,7 +32,7 @@ import yotelollevo.mx.usuario_general.EditarPerfilActivity;
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     private Button editar;
-    private TextView nom, usuario, nombres, apellidos, fecha, telefono;
+    private TextView nom, usuario, nombres, apellidos, fecha, telefono, orden;
 
     private RequestQueue conexionServidor;
     private StringRequest peticion;
@@ -55,12 +55,15 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         apellidos = (TextView) view.findViewById(R.id.dato_apellido);
         fecha = (TextView) view.findViewById(R.id.dato_fecha);
         telefono = (TextView) view.findViewById(R.id.dato_telefono);
+        orden = (TextView) view.findViewById(R.id.dato_ordenes);
 
         editar.setOnClickListener(this);
 
         conexionServidor = Volley.newRequestQueue(getActivity());
 
         ObtenerDatos();
+        ObtenerOrden();
+        cargarDatos();
 
         return view;
     }
@@ -100,6 +103,8 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                         editor.putString("email", datosUsuario.getString("email"));
                         editor.commit();
 
+                        ObtenerOrden();
+
                         cargarDatos();
                     }
 
@@ -131,6 +136,52 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         conexionServidor.add(peticion);
     }
 
+    public void ObtenerOrden() {
+        String url = "http://yotelollevo.mx/webservices/Controller/service.php?f=getNumServices";
+
+        peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject objetoRespuesta = new JSONObject(response);
+                    if(objetoRespuesta.getInt("code") == 404){
+                        //error.
+                    }else if(objetoRespuesta.getInt("code") == 200){
+                        //correcta.
+                        //orden.setText(objetoRespuesta.getString("numServices"));
+
+                        SharedPreferences espacio = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = espacio.edit();
+                        editor.putString("servicio", objetoRespuesta.getString("numServices"));
+                        editor.commit();
+
+                    }
+
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map map = new HashMap();
+                SharedPreferences espacio = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
+                String id = espacio.getString("id", null);
+                map.put("idPerson", id);
+                return map;
+            }
+        };
+
+        conexionServidor.add(peticion);
+    }
+
     private void cargarDatos() {
         SharedPreferences preferences = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
         String stringN = preferences.getString("nombres", null);
@@ -138,6 +189,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         String stringF = preferences.getString("fecha", null);
         String stringT = preferences.getString("telefono", null);
         String stringU = preferences.getString("email", null);
+        String stringO = preferences.getString("servicio", null);
 
         nombres.setText(stringN);
         apellidos.setText(stringA);
@@ -145,6 +197,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         telefono.setText(stringT);
         usuario.setText(stringU);
         nom.setText(stringN);
+        orden.setText(stringO);
     }
 
 }

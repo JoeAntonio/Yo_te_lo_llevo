@@ -2,13 +2,14 @@ package yotelollevo.mx.usuario_general.model;
 
 public class Historial {
 
-    String nombres, fecha, detalle, ordenSer;
+    String nombres, fecha, detalle, ordenSer, servicio;
 
-    public Historial(String nombres, String fecha, String detalle, String ordenSer) {
+    public Historial(String nombres, String fecha, String detalle, String ordenSer, String servicio) {
         this.nombres = nombres;
         this.fecha = fecha;
         this.detalle = detalle;
         this.ordenSer = ordenSer;
+        this.servicio = servicio;
     }
 
     public String getNombres() {
@@ -41,5 +42,13 @@ public class Historial {
 
     public void setOrdenSer(String ordenSer) {
         this.ordenSer = ordenSer;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 }

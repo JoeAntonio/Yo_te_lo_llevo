@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="yotelollevo.mx"
-    >
+    package="yotelollevo.mx">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
-        />
-    <uses-permission android:name="android.permission.INTERNET"
-        />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,67 +16,61 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        >
-        <activity android:name=".MainActivity"
-            />
-        <activity android:name=".usuario_general.LoginActivity"
-            >
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".usuario_general.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                    />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"
-                    />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".usuario_general.CrearCuentaActivity"
             android:parentActivityName=".usuario_general.LoginActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".usuario_general.LoginActivity"
-                />
+                android:value=".usuario_general.LoginActivity" />
         </activity>
         <activity
             android:name=".usuario_general.EditarPerfilActivity"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"
-                />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".usuario_general.InfoActivity"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"
-                />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".usuario_general.OrdenActivity"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"
-                />
+                android:value=".MainActivity" />
         </activity>
-        <activity android:name=".usuario_general.HistorialActivity"
+        <activity
+            android:name=".usuario_general.HistorialActivity"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".usuario_general.RecuperarActivity"
+            android:parentActivityName=".usuario_general.LoginActivity"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".usuario_general.LoginActivity"
                 />
         </activity>
     </application>

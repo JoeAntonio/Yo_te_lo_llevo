@@ -38,7 +38,7 @@ import yotelollevo.mx.R;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText usuario, clave;
-    private TextView subrayado;
+    private TextView subrayado, recuperar;
     private Button acceder;
 
     private RequestQueue conexionServidor;
@@ -67,13 +67,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         clave = (EditText) findViewById(R.id.login_pass);
         acceder = findViewById(R.id.butt_sesion);
         subrayado = (TextView) findViewById(R.id.textView_crear);
+        recuperar = (TextView) findViewById(R.id.login_recuperar);
 
         //Manda a llamar al texto subrayado.
         subrayado.setText(Html.fromHtml(getResources().getString(R.string.crear)));
+        recuperar.setText(Html.fromHtml(getResources().getString(R.string.recuperar)));
 
         dialog = new ProgressDialog(this);
 
         acceder.setOnClickListener(this);
+        recuperar.setOnClickListener(this);
 
         conexionServidor = Volley.newRequestQueue(LoginActivity.this);
     }
@@ -126,7 +129,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             //En caso de error de conexión.
                             dialog.dismiss();
                             Toast.makeText(LoginActivity.this, "no hay conexión a internet", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
                         }
                     }){
                         //Variables a mandar.
@@ -146,6 +148,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.textView_crear:
                 Intent intent = new Intent(LoginActivity.this, CrearCuentaActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.login_recuperar:
+                Intent intent2 = new Intent(LoginActivity.this, RecuperarActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

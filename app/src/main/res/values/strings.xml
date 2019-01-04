@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">YO TE LO LLEVO</string>
     <string name="restrinccion">TODO</string>
-    <string name="username">Usuario o Número de teléfono:</string>
+    <string name="username">Correo electrónico o teléfono:</string>
     <string name="password">Contraseña:</string>
     <string name="login">Login</string>
     <string name="cuenta">¿No tienes cuenta?,</string>
@@ -51,7 +51,15 @@
     <string name="comparte">Comparte tu destino desde</string>
     <string name="googleMaps">google maps</string>
     <string name="indi">Origen y destino:</string>
-    <string name="numero_orden">N° orden de servicio:</string>
+    <string name="numero_orden">Orden de servicio:</string>
     <string name="fecha_orden">Fecha:</string>
     <string name="desc_orden">Descripción:</string>
+    <string name="llamar">Llamar</string>
+    <string name="texto_viajeUrgente">Si necesitas un servicio urgente, llámanos.</string>
+    <string name="anombrede">A nombre de:</string>
+    <string name="recuperar"><![CDATA[<u>¿olvidaste tu contraseña?</u>]]></string>
+    <string name="recuperatucuenta">Recupera tu cuenta</string>
+    <string name="podemosayudarte">Podemos ayudarte a restablecer tu contraseña, escribe tu número de teléfono.</string>
+    <string name="telefonopara">Teléfono para contacto:</string>
+    <string name="correo">Correo electrónico:</string>
 </resources>
