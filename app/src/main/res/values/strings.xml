@@ -59,7 +59,7 @@
     <string name="anombrede">A nombre de:</string>
     <string name="recuperar"><![CDATA[<u>¿olvidaste tu contraseña?</u>]]></string>
     <string name="recuperatucuenta">Recupera tu cuenta</string>
-    <string name="podemosayudarte">Podemos ayudarte a restablecer tu contraseña, escribe tu número de teléfono.</string>
+    <string name="podemosayudarte"><![CDATA[<body style="text-align:justify;">Podemos ayudarte a restablecer tu contraseña, escribe tu correo electrónico y te llegará un código nuevo como contraseña.</body>]]></string>
     <string name="telefonopara">Teléfono para contacto:</string>
     <string name="correo">Correo electrónico:</string>
 </resources>

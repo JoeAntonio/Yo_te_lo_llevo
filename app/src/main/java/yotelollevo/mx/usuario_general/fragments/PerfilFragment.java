@@ -62,7 +62,6 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         conexionServidor = Volley.newRequestQueue(getActivity());
 
         ObtenerDatos();
-        ObtenerOrden();
         cargarDatos();
 
         return view;
@@ -101,9 +100,8 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                         editor.putString("fecha", datosUsuario.getString("birthday"));
                         editor.putString("telefono", datosUsuario.getString("phone"));
                         editor.putString("email", datosUsuario.getString("email"));
+                        editor.putString("servicio", datosUsuario.getString("numService"));
                         editor.commit();
-
-                        ObtenerOrden();
 
                         cargarDatos();
                     }
@@ -129,52 +127,6 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 SharedPreferences espacio = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
                 String email = espacio.getString("email", null);
                 map.put("email", email);
-                return map;
-            }
-        };
-
-        conexionServidor.add(peticion);
-    }
-
-    public void ObtenerOrden() {
-        String url = "http://yotelollevo.mx/webservices/Controller/service.php?f=getNumServices";
-
-        peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject objetoRespuesta = new JSONObject(response);
-                    if(objetoRespuesta.getInt("code") == 404){
-                        //error.
-                    }else if(objetoRespuesta.getInt("code") == 200){
-                        //correcta.
-                        //orden.setText(objetoRespuesta.getString("numServices"));
-
-                        SharedPreferences espacio = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = espacio.edit();
-                        editor.putString("servicio", objetoRespuesta.getString("numServices"));
-                        editor.commit();
-
-                    }
-
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map map = new HashMap();
-                SharedPreferences espacio = getActivity().getSharedPreferences("yotelollevo", Context.MODE_PRIVATE);
-                String id = espacio.getString("id", null);
-                map.put("idPerson", id);
                 return map;
             }
         };
